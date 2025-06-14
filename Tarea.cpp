@@ -2,51 +2,55 @@
 #include <string>
 
 
-int areaRectangulo(int base, int altura) 
+int arectangulo(int base, int altura) 
 {
-	return base * altura;
+    return base * altura;
 }
 
-int areaTriangulo(int base, int altura) 
+int atriangulo(int base, int altura) 
 {
-	return (base * altura) / 2;
+    return (base * altura) / 2;
 }
 
-int areaCirculo(int radio , int ) 
+int acirculo(int radio , int radio1)
 {
-	return radio * radio * 3.1416;
+    return radio * radio1* 3.1416;
 }
 
-int areaCuadrado(int lado, int )
+int acuadrado(int l, int l1)
 {
-	return lado * lado;
+    return l1 * l;
 }
 
 
-void ejecutar(int (*Arrpf)(int, int), int ArrPar[], std::string nombres[]) 
-{
-	
-	std::cout << "Area del " << nombres[0] << ": "; 
-	std::cout << Arrpf(ArrPar[0], ArrPar[1]) << std::endl;
-}
+void ejecuta(int (*Arrpf[])(int, int), int ArrPar[], std::string nombres[]) {
+    int* p = ArrPar;
+  
+    std::string* p2 = nombres;      
+    int (**pf)(int, int) = Arrpf;   
 
+    for (int i = 0; i < 4; i++) {
+        std::cout << "Área del " << *p2 << ": ";
+        std::cout << (*(*pf))(*p, *(p + 1)) << std::endl;
+        
+        p += 2;
+      
+        p2++;     
+        pf++;     
+    }
+}
 int main() {
-	
-	int paramsRectangulo[] = {5, 3};  
-	int paramsTriangulo[] = {5, 3};   
-	int paramsCirculo[] = {5, 0};    
-	int paramsCuadrado[]={5, 5};     
-	
-	
-	std::string n[] = {"rectángulo", "triángulo", "circulo", "cuadrado"};
-	
-	
-	
-	ejecutar(areaRectangulo, paramsRectangulo, n);
-	ejecutar(areaTriangulo, paramsTriangulo, n+1); 
-	ejecutar(areaCirculo, paramsCirculo, n+2);     
-	ejecutar(areaCuadrado, paramsCuadrado,n+3);
-	
-	
+    
+    int parametros[8] = { 5, 3,   5, 3,   5, 5, 5, 5 };
+    
+    
+    std::string n[] = {"rectángulo", "triángulo", "circulo", "cuadrado"};
+    
+    
+    int (*Arrpf[])(int, int) = {arectangulo, atriangulo, acirculo, acuadrado};
+
+    ejecuta(Arrpf , parametros , n);
+    
+    
 }
 
