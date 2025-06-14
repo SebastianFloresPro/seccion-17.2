@@ -23,7 +23,7 @@ int areaCuadrado(int lado, int )
 }
 	
 	
-void ejecutar(int (*funcion)(int, int), int params[], std::string nombres[]) 
+void ejecutar(int (*Arrpf)(int, int), int ArrPar[], std::string nombres[]) 
 {
 	
 	std::cout << "Area del " << nombres[0] << ": "; 
